@@ -4,5 +4,7 @@
   "total_cases": "Total",
   "deaths": "Deaths",
   "new_confirmed": "New Cases",
-  "vew_more": "View All"
+  "vew_more": "View All",
+  "sort_by": "Sort By:",
+  "recovered": "Recovered"
 }

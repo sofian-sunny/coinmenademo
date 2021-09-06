@@ -5,12 +5,13 @@ import {CountryListIItem} from '../../components/molecules';
 import {CustomTextInput} from '../../components/atoms';
 import {CountryType} from '../../stores/types';
 import {sortCovidStatsData} from '../../utils/helper';
+import {en} from '../../i18n';
 import commonStyles from '../../styles';
 import styles from './style';
 
 const {container} = commonStyles;
 const {subContainer, searchText, sortContainer} = styles;
-
+const {sort_by, deaths, recovered} = en;
 interface RenderCountryItemItemProps {
   item: CountryType;
 }
@@ -53,13 +54,13 @@ const AllCountries = ({route}: AllCountriesProps): React.ReactElement => {
           placeholderText="Search"
         />
         <View style={sortContainer}>
-          <Text>Sort By: </Text>
+          <Text>{sort_by}</Text>
           <Text onPress={() => sortCovidStatistics('NewConfirmed')}>New </Text>
           <Text onPress={() => sortCovidStatistics('TotalDeaths')}>
-            Deaths{' '}
+            {deaths}
           </Text>
           <Text onPress={() => sortCovidStatistics('TotalRecovered')}>
-            Recovered
+            {recovered}
           </Text>
         </View>
         <FlatList
