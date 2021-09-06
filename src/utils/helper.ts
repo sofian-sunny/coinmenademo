@@ -8,7 +8,6 @@ import {
 const getGraphArrays = (data: CovidWorldTotalStatsByDate[]) => {
   let graphLabel: string[] = [];
   let graphData: number[] = [];
-  console.log('data ', data);
 
   data.forEach((item: CovidWorldTotalStatsByDate) => {
     let day = moment.utc(item.Date).format('Do MMM');
@@ -35,8 +34,6 @@ const sortCovidStatsData = (
   const sortedData = data?.sort((a, b) => {
     return a[sortParam] - b[sortParam];
   });
-
-  console.log('filteredData ', sortedData);
 
   return sortedData;
 };

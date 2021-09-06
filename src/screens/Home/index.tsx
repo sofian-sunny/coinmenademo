@@ -19,6 +19,7 @@ import {en} from '../../i18n';
 import {apiEndPoints} from '../../utils/constants';
 import {useNavigation} from '@react-navigation/native';
 import {MainRoutes, MainStackParamList} from '../../navigation/routes';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const {container} = commonStyles;
 const {subContainer, viewMore, viewMoreContainer, loaderContainer} = styles;
@@ -27,11 +28,10 @@ type homeScreenProp = StackNavigationProp<MainStackParamList, MainRoutes.Home>;
 
 const HomeScreen = (): React.ReactElement => {
   const navigation = useNavigation<homeScreenProp>();
-  console.log({navigation});
 
   const covidStatsStore = useCovidStatsStore((state: any) => state);
 
-  const {isLoading, isError, data} = useQuery(summary, () =>
+  const {isLoading, data} = useQuery(summary, () =>
     covidStatsStore.fetchCovidStats(summary),
   );
 
@@ -100,20 +100,24 @@ const HomeScreen = (): React.ReactElement => {
 
   return (
     <View style={container}>
-      <SafeAreaView style={subContainer}>
+      <SafeAreaView>
         <WelcomeText />
         <View>{renderGlobalStats()}</View>
-        <View>{renderStatsGraph()}</View>
-        <TouchableOpacity
-          style={viewMoreContainer}
-          activeOpacity={0.7}
-          onPress={onPressViewAll}>
-          <CustomText style={viewMore} textType="regular">
-            {en.vew_more}
-          </CustomText>
-        </TouchableOpacity>
-        <View style={subContainer}>{renderTopCountriesStats()}</View>
-        {showLoader()}
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={subContainer}>
+            <View>{renderStatsGraph()}</View>
+            <TouchableOpacity
+              style={viewMoreContainer}
+              activeOpacity={0.7}
+              onPress={onPressViewAll}>
+              <CustomText style={viewMore} textType="regular">
+                {en.vew_more}
+              </CustomText>
+            </TouchableOpacity>
+            <View style={subContainer}>{renderTopCountriesStats()}</View>
+            {showLoader()}
+          </View>
+        </ScrollView>
       </SafeAreaView>
     </View>
   );

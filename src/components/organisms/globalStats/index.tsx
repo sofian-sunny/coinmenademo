@@ -13,8 +13,6 @@ type CustomProps = {
 const GlobalStats: FunctionComponent<CustomProps> = ({globalData}) => {
   const {TotalConfirmed, TotalDeaths, NewConfirmed} = globalData;
 
-  console.log('globalData ', globalData);
-
   return (
     <View style={container}>
       <StatsCard title={en.total_cases} subTitle={`${TotalConfirmed}`} />

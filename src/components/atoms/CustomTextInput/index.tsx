@@ -3,13 +3,14 @@ import {View, TextInput, ViewStyle} from 'react-native';
 import styles from './style';
 
 const {container, textInputStyle, fill} = styles;
+
 type CustomTextProps = {
   style?: ViewStyle;
-  containerStyle: ViewStyle;
-  LeftComponent: View;
-  RightComponent: View;
+  containerStyle?: ViewStyle;
+  LeftComponent?: View;
+  RightComponent?: View;
   placeholderText: string;
-  onChangeTextValue: () => void;
+  onChangeTextValue: (text: string) => void;
 };
 
 const CustomTextInput = function (props: CustomTextProps) {
